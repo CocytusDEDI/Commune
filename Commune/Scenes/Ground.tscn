@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b52k4hekc0ei"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_l030o"]
+
+[node name="Ground" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("WorldBoundaryShape3D_l030o")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(100, 0.01, 100)
