@@ -10,22 +10,21 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $Head/Camera3D
 @onready var head = $Head
 
-var gd_dict = {
-	"key1": "value1",
-	"key2": 2,
-	"key3": true
+var efficiencies = {
+	"give_velocity": 1.0
 }
-
-# Convert the dictionary to JSON string
-var json_string = JSON.stringify(gd_dict)
-
-# Pass the JSON string to Rust
-# var rust_object = preload("res://path/to/your/rust/script.gdns").new()
-# rust_object.receive_json(json_string)
-
+var efficiencies_json = JSON.stringify(efficiencies)
+var instructions = "repeat:
+	give_velocity(1, 0, 0)"
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	var test_spell = Spell.new()
+	var root_node = get_tree().root.get_node("Game/Origin")
+	test_spell.give_efficiencies(efficiencies_json)
+	test_spell.give_instructions(Spell.get_instructions(instructions))
+	test_spell.set_position(self.global_position)
+	root_node.add_child(test_spell)
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
