@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b52k4hekc0ei"]
+[gd_scene load_steps=3 format=3 uid="uid://b52k4hekc0ei"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_l030o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1b7mq"]
+albedo_color = Color(0.20871, 0.20871, 0.20871, 1)
 
 [node name="Ground" type="StaticBody3D"]
 
@@ -8,4 +11,5 @@
 shape = SubResource("WorldBoundaryShape3D_l030o")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_1b7mq")
 size = Vector3(100, 0.01, 100)

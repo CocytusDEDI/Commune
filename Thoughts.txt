@@ -1,0 +1,20 @@
+Magic system:
+- max power (energy / second) output (increases with level up)
+    - changes around 100%
+        - goes up if in fury immediately (rename)
+        - goes down if in calm immediately (rename)
+- focus (doesn't change with level up)
+    - factors into amount of control available (via multiplication by focus)
+    - facotrs into amount of max power (via multiplication by focus)
+    - changes around 1:
+        - goes up when in calm by amount per second (rename)
+        - goes down when in fury by amount per second (rename)
+        - goes down while casting spells
+        - goes up while doing nothing
+    - expentionially hard to reach both zero focus and 2 focus
+        - use sigmoid function `F = 2/(1+e^-x)` where `x = x + change_in_focus * delta` where delta is time between frames
+- control (increases with level up)
+    - is an amount available
+    - goes down with use of control
+    - goes back up when not using that control
+    - overall total control changes around 100% via multiplication by focus
