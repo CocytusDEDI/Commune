@@ -1,5 +1,5 @@
 # Commune
-An open source game mechanics implementation
+A sandbox for [MMSpellbook](https://github.com/CocytusDEDI/MMSpellbook).
 
 ## Status
-Currently on pause. This project may become an implementation of MMSpellbook.
+May be improved upon to look nicer and handle the visual effects of MMSpellbook in the future.
