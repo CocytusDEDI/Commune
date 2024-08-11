@@ -53,7 +53,7 @@ func set_spell(text):
 	# If spell was successfully translated and they're allowed to cast it
 	if successful and allowed_to_cast:
 		# Gives the spell the users instructions
-		self.set_instructions(instructions)
+		self.set_loaded_spell(instructions)
 
 	# If spell translation was unsuccesful, do something
 	else:
