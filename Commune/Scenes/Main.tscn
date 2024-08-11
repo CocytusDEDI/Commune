@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://emaaf6fclyj5"]
+[gd_scene load_steps=9 format=3 uid="uid://emaaf6fclyj5"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_1c2y5"]
 [ext_resource type="PackedScene" uid="uid://gnp4a3e5kgbk" path="res://Scenes/Player.tscn" id="1_bh3v7"]
 [ext_resource type="PackedScene" uid="uid://b52k4hekc0ei" path="res://Scenes/Ground.tscn" id="2_q5n55"]
 [ext_resource type="Shader" path="res://Shaders/SkyShader.gdshader" id="4_o4q5a"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="5_nf075"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bq7f"]
 shader = ExtResource("4_o4q5a")
@@ -45,16 +46,9 @@ sky = SubResource("Sky_mme2g")
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_1c2y5")
-day_time = 12.0
+day_time = 9.0
 sun_base_enegry = 1.0
 moon_base_enegry = 0.1
-
-[node name="Player" parent="." instance=ExtResource("1_bh3v7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
-
-[node name="Head" type="Node3D" parent="Player"]
-
-[node name="Camera3D" type="Camera3D" parent="Player/Head"]
 
 [node name="Ground" parent="." instance=ExtResource("2_q5n55")]
 
@@ -62,14 +56,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1)
 environment = SubResource("Environment_6rnwm")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.920902, 0, -0.389794, 0.389794, -4.37114e-08, 0.920902, -1.70384e-08, -1, -4.02539e-08, 0, 0, 0)
+transform = Transform3D(0.920832, 0, -0.389959, 0.275743, 0.707107, 0.651127, 0.275743, -0.707107, 0.651127, 0, 0, 0)
 rotation_order = 4
 shadow_enabled = true
 shadow_opacity = 0.75
 shadow_blur = 5.0
 
 [node name="Moon" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.995978, 0, 0.0895897, -0.028138, 0.949397, 0.312814, -0.0850561, -0.314077, 0.94558, 0, 0, 0)
+transform = Transform3D(0.980151, 0, -0.198249, 0.174684, 0.472863, 0.863647, 0.0937446, -0.881135, 0.463478, 0, 0, 0)
 rotation_order = 4
 light_color = Color(1, 1, 0.6, 1)
 light_energy = 0.1
@@ -78,4 +72,6 @@ shadow_opacity = 0.25
 shadow_blur = 5.0
 directional_shadow_fade_start = 0.1
 
-[node name="Origin" type="Node3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_bh3v7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16614, 0)
+script = ExtResource("5_nf075")
