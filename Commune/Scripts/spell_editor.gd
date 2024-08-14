@@ -6,7 +6,6 @@ extends CanvasLayer
 func _ready():
 	text_box.grab_focus()
 
-
 func _on_button_pressed():
 	emit_signal("spell_entered", text_box.text)
 

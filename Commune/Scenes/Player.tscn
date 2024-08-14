@@ -3,6 +3,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ra4iv"]
 
 [node name="MagicalEntity" type="MagicalEntity"]
+max_health = 0.0
+max_shield = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_ra4iv")

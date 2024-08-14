@@ -3,6 +3,7 @@ extends MagicalEntity
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.02
+const SCROLL_WHEEL_SENSITIVITY = 0.05
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -10,14 +11,30 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var head = $Head
 
 var player_menu = preload("res://Scenes/spell_editor.tscn")
+var magical_entity_ui = preload("res://Scenes/magical_entity_ui.tscn")
 var player_menu_up = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	var magical_entity_ui_instance = magical_entity_ui.instantiate()
+	self.add_child(magical_entity_ui_instance)
 	self.set_save_path("player")
 	self.add_component("give_velocity")
+	self.add_component("set_damage")
+	self.add_component("recharge_to")
 
 func _process(delta):
+	# Handles the changing of properties
+	self.handle_magic(delta)
+	
+	# Handle UI bars
+	var magical_entity_ui = self.get_node("MagicalEntityUI")
+	magical_entity_ui.set_control(self.get_control())
+	magical_entity_ui.set_shield(self.shield)
+	magical_entity_ui.set_energy_charged(self.energy_charged)
+	magical_entity_ui.set_energy_selected(self.get_energy_selected())
+	magical_entity_ui.set_focus(self.get_focus())
+	
 	# Deals with the menu
 	if Input.is_action_just_pressed("player_menu"):
 		if player_menu_up:
@@ -32,7 +49,13 @@ func _process(delta):
 			player_menu_instance.connect("spell_entered", set_spell)
 	# Allows players to cast spells if the menus not up
 	if !player_menu_up:
-		self.handle_player_spell_casting(delta)
+		if Input.is_action_just_pressed("cast"):
+			self.cast_spell()
+		if Input.is_action_just_pressed("toggle_charge"):
+			if self.charge:
+				self.charge = false
+			else:
+				self.charge = true
 
 func set_spell(text):
 	# Attempts to translate the instructions into executable format
@@ -68,6 +91,14 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	else:
+		if event is InputEventMouseButton:
+			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+				self.change_energy_selected(SCROLL_WHEEL_SENSITIVITY)
+			else:
+				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+					self.change_energy_selected(-SCROLL_WHEEL_SENSITIVITY)
+				
 
 func _physics_process(delta):
 	# Add the gravity.

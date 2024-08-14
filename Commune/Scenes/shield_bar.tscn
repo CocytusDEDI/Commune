@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1x0uxpj3harp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l6gq"]
+bg_color = Color(0.102745, 8.32662e-06, 0.456139, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7dy4"]
+bg_color = Color(0.213282, 2.71457e-05, 0.821692, 1)
+
+[node name="ShieldBar" type="ProgressBar"]
+offset_right = 300.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_0l6gq")
+theme_override_styles/fill = SubResource("StyleBoxFlat_r7dy4")
+max_value = 0.0
+show_percentage = false

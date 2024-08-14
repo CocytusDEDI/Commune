@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://emaaf6fclyj5"]
+[gd_scene load_steps=10 format=3 uid="uid://emaaf6fclyj5"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_1c2y5"]
 [ext_resource type="PackedScene" uid="uid://gnp4a3e5kgbk" path="res://Scenes/Player.tscn" id="1_bh3v7"]
@@ -44,6 +44,8 @@ sky_material = SubResource("ShaderMaterial_1bq7f")
 background_mode = 2
 sky = SubResource("Sky_mme2g")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_l3ct5"]
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_1c2y5")
 day_time = 9.0
@@ -73,5 +75,27 @@ shadow_blur = 5.0
 directional_shadow_fade_start = 0.1
 
 [node name="Player" parent="." instance=ExtResource("1_bh3v7")]
+charge = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16614, 0)
 script = ExtResource("5_nf075")
+
+[node name="MagicalEntity" type="MagicalEntity" parent="."]
+health = 1.0
+charge = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.662298, -2.69473)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MagicalEntity"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MagicalEntity"]
+shape = SubResource("BoxShape3D_l3ct5")
+
+[node name="MagicalEntity2" type="MagicalEntity" parent="."]
+health = 100.0
+shield = 5.0
+charge = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.662298, -2.10156)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="MagicalEntity2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MagicalEntity2"]
+shape = SubResource("BoxShape3D_l3ct5")
