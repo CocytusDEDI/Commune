@@ -7,9 +7,8 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 bg_color = Color(0.261294, 0.000692746, 0.43678, 1)
 
 [node name="EnergySelectedBar" type="ProgressBar"]
-offset_top = 20.0
 offset_right = 300.0
-offset_bottom = 40.0
+offset_bottom = 20.0
 theme_override_styles/background = SubResource("StyleBoxFlat_1mrs4")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ujp4e")
 max_value = 0.0

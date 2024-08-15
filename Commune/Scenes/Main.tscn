@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://emaaf6fclyj5"]
+[gd_scene load_steps=11 format=3 uid="uid://emaaf6fclyj5"]
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_1c2y5"]
 [ext_resource type="PackedScene" uid="uid://gnp4a3e5kgbk" path="res://Scenes/Player.tscn" id="1_bh3v7"]
 [ext_resource type="PackedScene" uid="uid://b52k4hekc0ei" path="res://Scenes/Ground.tscn" id="2_q5n55"]
 [ext_resource type="Shader" path="res://Shaders/SkyShader.gdshader" id="4_o4q5a"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="5_nf075"]
+[ext_resource type="Script" path="res://Scripts/MagicalEntity2.gd" id="6_15edb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bq7f"]
 shader = ExtResource("4_o4q5a")
@@ -75,13 +76,11 @@ shadow_blur = 5.0
 directional_shadow_fade_start = 0.1
 
 [node name="Player" parent="." instance=ExtResource("1_bh3v7")]
-charge = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.16614, 0)
 script = ExtResource("5_nf075")
 
 [node name="MagicalEntity" type="MagicalEntity" parent="."]
 health = 1.0
-charge = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.662298, -2.69473)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="MagicalEntity"]
@@ -91,9 +90,8 @@ shape = SubResource("BoxShape3D_l3ct5")
 
 [node name="MagicalEntity2" type="MagicalEntity" parent="."]
 health = 100.0
-shield = 5.0
-charge = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.662298, -2.10156)
+script = ExtResource("6_15edb")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="MagicalEntity2"]
 

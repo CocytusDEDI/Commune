@@ -27,14 +27,6 @@ func _process(delta):
 	# Handles the changing of properties
 	self.handle_magic(delta)
 	
-	# Handle UI bars
-	var magical_entity_ui = self.get_node("MagicalEntityUI")
-	magical_entity_ui.set_control(self.get_control())
-	magical_entity_ui.set_shield(self.shield)
-	magical_entity_ui.set_energy_charged(self.energy_charged)
-	magical_entity_ui.set_energy_selected(self.get_energy_selected())
-	magical_entity_ui.set_focus(self.get_focus())
-	
 	# Deals with the menu
 	if Input.is_action_just_pressed("player_menu"):
 		if player_menu_up:
