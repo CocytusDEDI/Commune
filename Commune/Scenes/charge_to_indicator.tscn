@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2rpdgyqdyfcn"]
+
+[node name="ChargeToIndicator" type="ColorRect"]
+offset_right = 2.0
+offset_bottom = 20.0
+color = Color(0, 0, 0, 1)

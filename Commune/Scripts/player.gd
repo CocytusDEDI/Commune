@@ -3,7 +3,7 @@ extends MagicalEntity
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.02
-const SCROLL_WHEEL_SENSITIVITY = 0.05
+const SCROLL_WHEEL_SENSITIVITY = 0.02
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -13,6 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var player_menu = preload("res://Scenes/spell_editor.tscn")
 var magical_entity_ui = preload("res://Scenes/magical_entity_ui.tscn")
 var player_menu_up = false
+var charge_selection = true
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -43,11 +44,11 @@ func _process(delta):
 	if !player_menu_up:
 		if Input.is_action_just_pressed("cast"):
 			self.cast_spell()
-		if Input.is_action_just_pressed("toggle_charge"):
-			if self.charge:
-				self.charge = false
+		if Input.is_action_just_pressed("toggle_charge_selection"):
+			if charge_selection:
+				charge_selection = false
 			else:
-				self.charge = true
+				charge_selection = true
 
 func set_spell(text):
 	# Attempts to translate the instructions into executable format
@@ -84,13 +85,21 @@ func _unhandled_input(event):
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 	else:
-		if event is InputEventMouseButton:
-			if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+		if !(event is InputEventMouseButton):
+			return
+
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
+			if charge_selection:
 				self.change_energy_selected(SCROLL_WHEEL_SENSITIVITY)
 			else:
-				if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				self.change_charge_to(SCROLL_WHEEL_SENSITIVITY)
+		else:
+			if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+				if charge_selection:
 					self.change_energy_selected(-SCROLL_WHEEL_SENSITIVITY)
-				
+				else:
+					self.change_charge_to(-SCROLL_WHEEL_SENSITIVITY)
+
 
 func _physics_process(delta):
 	# Add the gravity.
