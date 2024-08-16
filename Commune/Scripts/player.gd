@@ -100,6 +100,7 @@ func _unhandled_input(event):
 				else:
 					self.change_charge_to(-SCROLL_WHEEL_SENSITIVITY)
 
+var target_velocity = Vector3.ZERO
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -116,10 +117,11 @@ func _physics_process(delta):
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
 		var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction:
-			velocity.x = direction.x * SPEED
-			velocity.z = direction.z * SPEED
+			target_velocity = direction * SPEED
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-			velocity.z = move_toward(velocity.z, 0, SPEED)
+			target_velocity = Vector3.ZERO
+		
+		self.velocity.x = move_toward(self.velocity.x, target_velocity.x, delta * 50)
+		self.velocity.z = move_toward(self.velocity.z, target_velocity.z, delta * 50)
 
 	move_and_slide()
