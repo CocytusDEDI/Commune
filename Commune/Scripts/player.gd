@@ -23,8 +23,6 @@ func _ready():
 	self.add_component("give_velocity")
 	self.add_component("set_damage")
 	self.add_component("recharge_to")
-	self.add_component("anchor")
-	self.add_component("undo_anchor")
 	self.add_component("get_time")
 
 func _process(delta):
