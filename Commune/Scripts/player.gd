@@ -23,6 +23,9 @@ func _ready():
 	self.add_component("give_velocity")
 	self.add_component("set_damage")
 	self.add_component("recharge_to")
+	self.add_component("anchor")
+	self.add_component("undo_anchor")
+	self.add_component("get_time")
 
 func _process(delta):
 	# Handles the changing of properties
@@ -106,7 +109,9 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
+	
+	target_velocity = Vector3.ZERO
+	
 	# Handle jump.
 	if !player_menu_up:
 		if Input.is_action_just_pressed("jump") and is_on_floor():
@@ -121,7 +126,7 @@ func _physics_process(delta):
 		else:
 			target_velocity = Vector3.ZERO
 		
-		self.velocity.x = move_toward(self.velocity.x, target_velocity.x, delta * 50)
-		self.velocity.z = move_toward(self.velocity.z, target_velocity.z, delta * 50)
+	self.velocity.x = move_toward(self.velocity.x, target_velocity.x, delta * 50)
+	self.velocity.z = move_toward(self.velocity.z, target_velocity.z, delta * 50)
 
 	move_and_slide()
