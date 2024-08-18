@@ -7,8 +7,7 @@ const SCROLL_WHEEL_SENSITIVITY = 0.02
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var camera = $Head/Camera3D
-@onready var head = $Head
+@onready var camera = $Camera3D
 
 var player_menu = preload("res://Scenes/spell_editor.tscn")
 var magical_entity_ui = preload("res://Scenes/magical_entity_ui.tscn")
@@ -24,6 +23,8 @@ func _ready():
 	self.add_component("set_damage")
 	self.add_component("recharge_to")
 	self.add_component("get_time")
+	self.add_component("anchor")
+	self.add_component("undo_anchor")
 
 func _process(delta):
 	# Handles the changing of properties
@@ -82,7 +83,7 @@ func set_spell(text):
 func _unhandled_input(event):
 	# Move head
 	if event is InputEventMouseMotion:
-		head.rotate_y(-event.relative.x * SENSITIVITY)
+		self.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
 	else:
@@ -118,7 +119,7 @@ func _physics_process(delta):
 		# Get the input direction and handle the movement/deceleration.
 		# As good practice, you should replace UI actions with custom gameplay actions.
 		var input_dir = Input.get_vector("left", "right", "forward", "backward")
-		var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		var direction = (self.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		if direction:
 			target_velocity = direction * SPEED
 		else:
