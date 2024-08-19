@@ -25,6 +25,7 @@ func _ready():
 	self.add_component("get_time")
 	self.add_component("anchor")
 	self.add_component("undo_anchor")
+	self.add_component("perish")
 
 func _process(delta):
 	# Handles the changing of properties
