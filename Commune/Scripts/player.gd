@@ -9,8 +9,8 @@ const SCROLL_WHEEL_SENSITIVITY = 0.02
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var camera = $Camera3D
 
-var player_menu = preload("res://Scenes/spell_editor.tscn")
-var magical_entity_ui = preload("res://Scenes/magical_entity_ui.tscn")
+var player_menu = preload("res://Scenes/UI/spell_editor.tscn")
+var magical_entity_ui = preload("res://Scenes/UI/magical_entity_ui.tscn")
 var player_menu_up = false
 var charge_selection = true
 

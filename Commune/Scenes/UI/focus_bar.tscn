@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://i4nk63cky3gt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6l4xu"]
+bg_color = Color(0, 0.352941, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khoir"]
+bg_color = Color(0, 0.503838, 3.85046e-07, 1)
+
+[node name="FocusBar" type="ProgressBar"]
+offset_top = 40.0
+offset_right = 300.0
+offset_bottom = 60.0
+theme_override_styles/background = SubResource("StyleBoxFlat_6l4xu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_khoir")
+max_value = 2.0
+step = 0.001
+value = 1.0
+show_percentage = false

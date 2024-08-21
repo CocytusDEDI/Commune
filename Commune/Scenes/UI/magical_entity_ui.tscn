@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://cabddjgelxbmf"]
+
+[ext_resource type="Script" path="res://Scripts/magical_entity_ui.gd" id="1_pl6fe"]
+[ext_resource type="PackedScene" uid="uid://e8bj7jfn8hxj" path="res://Scenes/UI/control_bar.tscn" id="2_nx01t"]
+[ext_resource type="PackedScene" uid="uid://d0rjpyi6vivut" path="res://Scenes/UI/energy_charged_bar.tscn" id="3_xjl5n"]
+[ext_resource type="PackedScene" uid="uid://dyaovwsjq44n3" path="res://Scenes/UI/energy_selected_bar.tscn" id="5_5t65q"]
+[ext_resource type="PackedScene" uid="uid://d2rpdgyqdyfcn" path="res://Scenes/UI/charge_to_indicator.tscn" id="6_3o2cr"]
+[ext_resource type="PackedScene" uid="uid://i4nk63cky3gt" path="res://Scenes/UI/focus_bar.tscn" id="6_dw5ba"]
+
+[node name="MagicalEntityUI" type="Node2D"]
+script = ExtResource("1_pl6fe")
+
+[node name="EnergyChargedBar" parent="." instance=ExtResource("3_xjl5n")]
+
+[node name="ControlBar" parent="." instance=ExtResource("2_nx01t")]
+offset_top = 20.0
+offset_bottom = 40.0
+
+[node name="EnergySelectedBar" parent="." instance=ExtResource("5_5t65q")]
+
+[node name="FocusBar" parent="." instance=ExtResource("6_dw5ba")]
+
+[node name="ChargeToIndicator" parent="." instance=ExtResource("6_3o2cr")]

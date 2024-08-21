@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0rjpyi6vivut"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1mrs4"]
+bg_color = Color(0.117383, 3.51354e-05, 0.43645, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_41nor"]
+bg_color = Color(0.23296, 0.000120712, 0.765951, 1)
+
+[node name="EnergyChargedBar" type="ProgressBar"]
+offset_right = 300.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1mrs4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_41nor")
+max_value = 0.0
+show_percentage = false

@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Scripts/main.gd" id="1_1c2y5"]
 [ext_resource type="PackedScene" uid="uid://gnp4a3e5kgbk" path="res://Scenes/Player.tscn" id="1_bh3v7"]
-[ext_resource type="PackedScene" uid="uid://b52k4hekc0ei" path="res://Scenes/Ground.tscn" id="2_q5n55"]
 [ext_resource type="Shader" path="res://Shaders/SkyShader.gdshader" id="4_o4q5a"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="5_nf075"]
 [ext_resource type="Script" path="res://Scripts/MagicalEntity2.gd" id="6_15edb"]
+[ext_resource type="PackedScene" uid="uid://3cf3tl564qnu" path="res://Scenes/Terrain/terrian.tscn" id="7_oqcq5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1bq7f"]
 shader = ExtResource("4_o4q5a")
@@ -53,8 +53,6 @@ day_time = 9.0
 sun_base_enegry = 1.0
 moon_base_enegry = 0.1
 
-[node name="Ground" parent="." instance=ExtResource("2_q5n55")]
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6rnwm")
 
@@ -76,7 +74,7 @@ shadow_blur = 5.0
 directional_shadow_fade_start = 0.1
 
 [node name="Player" parent="." instance=ExtResource("1_bh3v7")]
-mass = 70.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2788, 0)
 script = ExtResource("5_nf075")
 
 [node name="MagicalEntity" type="MagicalEntity" parent="."]
@@ -97,3 +95,5 @@ script = ExtResource("6_15edb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MagicalEntity2"]
 shape = SubResource("BoxShape3D_l3ct5")
+
+[node name="Terrian" parent="." instance=ExtResource("7_oqcq5")]
