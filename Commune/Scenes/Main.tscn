@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://emaaf6fclyj5"]
 
-[ext_resource type="Script" path="res://Scripts/main.gd" id="1_1c2y5"]
+[ext_resource type="Script" path="res://Sky/sky.gd" id="1_1c2y5"]
 [ext_resource type="PackedScene" uid="uid://gnp4a3e5kgbk" path="res://Scenes/Player.tscn" id="1_bh3v7"]
-[ext_resource type="Shader" path="res://Shaders/SkyShader.gdshader" id="4_o4q5a"]
+[ext_resource type="Shader" path="res://Sky/SkyShader.gdshader" id="4_o4q5a"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="5_nf075"]
 [ext_resource type="Script" path="res://Scripts/MagicalEntity2.gd" id="6_15edb"]
 [ext_resource type="PackedScene" uid="uid://3cf3tl564qnu" path="res://Scenes/Terrain/terrian.tscn" id="7_oqcq5"]
@@ -79,7 +79,7 @@ health = 100.0
 max_health = 100.0
 max_control = 10000.0
 max_power = 1000.0
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2788, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.34739, 0)
 script = ExtResource("5_nf075")
 
 [node name="MagicalEntity" type="MagicalEntity" parent="."]
